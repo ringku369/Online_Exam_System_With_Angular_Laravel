@@ -1,0 +1,170 @@
+<div class="row">
+  <ngx-spinner></ngx-spinner>
+
+  
+  <div class="col-sm-12">
+    
+    <app-card cardTitle="Superadmin Card" [options]="false" >
+
+       
+      <!-- example -->
+      <!-- <div class="container mb-4">
+        <div class="row justify-content-center align-items-center">
+          <div class="tree">
+            <ul>
+              <li>
+                <a >Parent</a>
+                <ul>
+                  <li>
+                    <a >Child Left</a>
+                  </li>
+                  <li>
+                    <a >Child Right</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div> -->
+      <!-- example -->
+
+      
+
+      <!-- example 1 -->
+      <div class="container mb-4">
+
+        
+        <div class="row justify-content-center align-items-center">
+          <div class="col-12 mb-4">
+            <app-alert type="info"  dismiss="true">
+              <p class="text-center text-danger font-weight-bolder"> For better experience please view with desktop or big screen</p>
+            </app-alert>
+            
+            <div class="input-group input-group-sm mb-2 mt-2" *ngIf="udata.id > 0">
+              <input type="text" class="form-control" disabled
+              name="sno" value="{{udata.name}} - {{udata.username}}" 
+              placeholder="Recipient's username" aria-label="Recipient's username" 
+              aria-describedby="inputGroup-sizing-sm" (click)="getUserData(udata)">
+    
+              <div class="input-group-prepend" (click)="getUserData(udata)">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Show Tree</span>
+              </div>
+            </div>
+            
+          </div>
+          <br>
+
+          <!-- <div class="input-group input-group-sm mb-3">
+          
+            <ng-select [ngClass]="'ng-select'" name="user" (click)="getAllLinkUser()" 
+            (ngModelChange)="selectOnChange($event)"
+              [options]="users" [(ngModel)]="form.user"
+              class="custom-select" id="fordla" 
+              aria-describedby="inputGroup-sizing-sm">
+            </ng-select>
+  
+            <div class="input-group-prepend">
+              <label class="input-group-text" id="inputGroup-sizing-sm" for="fordla">Link User </label>
+            </div>
+          </div> -->
+
+
+          
+
+          <!-- table -->
+          <div class="customScroll">
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <td>
+                    <!-- tree-->
+          <div class="tree" >
+            <ul style="min-width: 6000px">
+              <li *ngFor="let parent of parents">
+                <a (click)="parentClick(parent)"> {{parent.name}} -  {{parent.username}}</a>
+                <!-- children1 -->
+                <ul *ngIf="parent.children.length > 0">
+                  <li *ngFor="let child1 of parent.children">
+                    <a (click)="child1Click(child1)"> {{child1.name}} -  {{child1.username}}  -  {{child1.isposition}}</a>
+                    <!-- children2 -->
+                    <ul *ngIf="child1.children.length > 0">
+                      <li *ngFor="let child2 of child1.children">
+                        <a (click)="child2Click(child2)"> {{child2.name}} -  {{child2.username}} -  {{child2.isposition}}</a>
+                        <!-- children3 -->
+                        <ul *ngIf="child2.children.length > 0">
+                          <li *ngFor="let child3 of child2.children">
+                            <a (click)="child3Click(child3)"> {{child3.name}} -  {{child3.username}} -  {{child3.isposition}}</a>
+                            <!-- children4 -->
+                            <ul *ngIf="child3.children.length > 0">
+                              <li *ngFor="let child4 of child3.children">
+                                <a (click)="child4Click(child4)"> {{child4.name}} -  {{child4.username}} -  {{child4.isposition}}</a>
+                                <!-- children4 -->
+                                <ul *ngIf="child4.children.length > 0">
+                                  <li *ngFor="let child5 of child4.children">
+                                    <a (click)="child5Click(child5)"> {{child5.name}} -  {{child5.username}} -  {{child5.isposition}}</a>
+
+                                    <!-- children5 -->
+                                    <ul *ngIf="child5.children.length > 0">
+                                      <li *ngFor="let child6 of child5.children">
+                                        <a (click)="child6Click(child6)"> {{child6.name}} -  {{child6.username}} -  {{child6.isposition}}</a>
+                                        <!-- children6 -->
+                                        <ul *ngIf="child6.children.length > 0">
+                                          <li *ngFor="let child7 of child6.children">
+                                            <a (click)="child7Click(child7)"> {{child7.name}} -  {{child7.username}} -  {{child7.isposition}}</a>
+                                            <!-- children7 -->
+                                            <ul *ngIf="child7.children.length > 0">
+                                              <li *ngFor="let child8 of child7.children">
+                                                <a (click)="child8Click(child8)"> {{child8.name}} -  {{child8.username}} -  {{child8.isposition}}</a>
+                                                <!-- children8 -->
+                                                <ul *ngIf="child8.children.length > 0">
+                                                  <li *ngFor="let child9 of child8.children">
+                                                    <a (click)="child9Click(child9)"> {{child9.name}} -  {{child9.username}} -  {{child9.isposition}}</a>
+                                                  </li>
+                                                </ul>
+                                                <!-- children8 -->
+                                              </li>
+                                            </ul>
+                                            <!-- children7 -->
+                                          </li>
+                                        </ul>
+                                        <!-- children6 -->
+
+                                      </li>
+                                    </ul>
+                                    <!-- children5 -->
+                                  </li>
+                                </ul>
+                                <!-- children4 -->
+                              </li>
+                            </ul>
+                            <!-- children4 -->
+                          </li>
+                        </ul>
+                        <!-- children3 -->
+                      </li>
+                    </ul>
+                    <!-- children2 -->
+                  </li>
+                </ul>
+                <!-- children1 -->
+
+              </li>
+            </ul>
+          </div>
+          <!-- tree-->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- table -->
+
+        </div>
+      </div>
+      <!-- example 1-->
+    
+    
+    </app-card>
+  </div>
+</div>

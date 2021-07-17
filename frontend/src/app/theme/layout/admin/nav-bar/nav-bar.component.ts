@@ -1,0 +1,60 @@
+import { HttpClient } from '@angular/common/http';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthtokenService } from 'src/app/services/authtoken.service';
+import {NextConfig} from '../../../../app-config';
+
+@Component({
+  selector: 'app-nav-bar',
+  templateUrl: './nav-bar.component.html',
+  styleUrls: ['./nav-bar.component.scss']
+})
+export class NavBarComponent implements OnInit {
+  public nextConfig: any;
+  public menuClass: boolean;
+  public collapseStyle: string;
+  public windowWidth: number;
+
+  @Output() onNavCollapse = new EventEmitter();
+  @Output() onNavHeaderMobCollapse = new EventEmitter();
+  
+
+  constructor(
+    private authtoken : AuthtokenService, 
+    private router: Router
+    ){
+    this.nextConfig = NextConfig.config;
+    this.menuClass = false;
+    this.collapseStyle = 'none';
+    this.windowWidth = window.innerWidth;
+  }
+
+  ngOnInit() { }
+
+  gotodashboard(event: any): void {
+    //event.preventDefault();
+
+    if(this.authtoken.roleMatch(['Superadmin'])){
+      this.router.navigate(['/superadmin/dashboard']);
+    }else if(this.authtoken.roleMatch(['Admin'])){
+      this.router.navigate(['/admin/dashboard']);
+    }else if(this.authtoken.roleMatch(['User'])){
+      this.router.navigate(['/user/dashboard']);
+    }
+
+  }
+
+  toggleMobOption() {
+    this.menuClass = !this.menuClass;
+    this.collapseStyle = (this.menuClass) ? 'block' : 'none';
+  }
+
+  navCollapse() {
+    if (this.windowWidth >= 992) {
+      this.onNavCollapse.emit();
+    } else {
+      this.onNavHeaderMobCollapse.emit();
+    }
+  }
+
+}

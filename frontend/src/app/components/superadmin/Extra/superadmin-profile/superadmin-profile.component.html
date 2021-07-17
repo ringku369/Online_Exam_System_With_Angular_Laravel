@@ -1,0 +1,121 @@
+<div class="row">
+  <ngx-spinner></ngx-spinner>
+  <div class="col-sm-12">
+    
+    <app-card cardTitle="User Profile" [options]="false">
+      
+      <app-alert type="info"  dismiss="true">
+        <span class="text-center text-danger font-weight-bolder"> 
+          Please update your profile with proper information
+        </span>
+      </app-alert>
+
+      <form class="m-t-20" #signupForm=ngForm (ngSubmit)="onSubmit()">
+
+        <div class="alert alert-success" [hidden]="!success" *ngFor="let item of success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+        <div class="alert alert-warning" [hidden]="!errors" *ngFor="let item of errors">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+        
+        <div class="input-group input-group-sm mb-3">
+          <input type="text" class="form-control" 
+          name="username" [(ngModel)]="form.username"
+          placeholder="Input Username" disabled aria-label="Input Username" aria-describedby="forUsername" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forUsername">Required </span>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <input type="email" class="form-control"
+          name="email" [(ngModel)]="form.email"
+          placeholder="Input Email" disabled aria-label="Input Email" aria-describedby="forEmail" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forEmail">Required </span>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <select  class="custom-select" id="forpos" name="gender" [(ngModel)]="form.gender" required>
+            <option value="">Select Position</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <div class="input-group-append">
+            <label class="input-group-text" for="forpos">Required </label>
+          </div>
+        </div>
+
+
+
+        <div class="input-group input-group-sm mb-3">
+          <input type="text" class="form-control" 
+          name="name" [(ngModel)]="form.name"
+          placeholder="Input Full Name" aria-label="Input Full Name" aria-describedby="forName" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forName">Required </span>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-4">
+          <input type="text" class="form-control" 
+          name="contact" [(ngModel)]="form.contact"
+          placeholder="Contact Number" aria-label="Contact Number" aria-describedby="forContact" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forContact">Required </span>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-4">
+          <input type="text" class="form-control" 
+          name="profession" [(ngModel)]="form.profession"
+          placeholder="Profession" aria-label="Profession" aria-describedby="forProfession" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forProfession">Required </span>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-4">
+          <input type="text" class="form-control" 
+          name="district" [(ngModel)]="form.district"
+          placeholder="District" aria-label="District" aria-describedby="forDistrict" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forDistrict">Required </span>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-4">
+          <input type="text" class="form-control" 
+          name="address" [(ngModel)]="form.address"
+          placeholder="Address" aria-label="Address" aria-describedby="forAddress" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forAddress">Required </span>
+          </div>
+        </div>
+
+
+
+
+        <button class="btn btn-block btn-sm btn-primary mb-4"
+        [disabled]="!signupForm.valid">Update ...</button>
+      
+      </form>
+    
+    
+    </app-card>
+  </div>
+</div>

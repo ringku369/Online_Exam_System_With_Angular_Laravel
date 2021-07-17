@@ -1,0 +1,79 @@
+<perfect-scrollbar *ngIf="this.nextConfig['layout'] === 'vertical'" (clickOutside)="navMob()" [excludeBeforeClick]="true" [exclude]="'#mobile-collapse'" id="nav-ps-next" ngClass="able-pro-scroll" [style.max-width]="'300px'" [style.max-height]="'calc(100vh - 60px)'" [usePSClass]="'next'" [disabled]="null">
+  <div class="navbar-content">
+    <div class="">
+      <div class="main-menu-header">
+        
+        <a (click)="gotodashboard($event)" style="cursor: pointer;">
+          <img class="img-radius" src="assets/images/user/avatar.png" alt="User-Profile-Image">
+        </a>
+        
+       
+        
+        <div class="user-details" (click)="isNavProfile = !isNavProfile">
+          <div id="more-details">{{name}}<i class="fa fa-caret-down" [ngClass]="{'fa-caret-up': isNavProfile }"></i></div>
+        </div>
+      </div>
+      <div class="collapse" id="nav-user-link" *ngIf="isNavProfile" [style.display]="'block'">
+        <ul class="list-unstyled">
+          <!-- <li class="list-group-item"><a href="javascript:"><i class="feather icon-user m-r-5"></i>View Profile</a></li>
+          <li class="list-group-item"><a href="javascript:"><i class="feather icon-settings m-r-5"></i>Settings</a></li> -->
+          
+          <li class="list-group-item">
+            <a (click)="showRank($event)" title="Show Rank">
+              <i class="fa fa-university text-c-yellow m-r-10" aria-hidden="true"></i> 
+              <div *ngIf="spinner1" class="spinner-grow text-info spinner-grow-sm" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+              <b>
+                <span class="text-danger font-italic font-weight-bolder">{{rank}} </span> 
+              </b>
+              
+            </a>
+          </li>
+          
+          <!-- <li class="list-group-item">
+            <a (click)="showBalanse($event)" title="Show Balance">
+              <i class="f-16 m-r-10 fab fa-btc text-c-yellow"></i>
+              <span *ngIf="!balance" class="text-primary font-italic font-weight-bolder">Show Balance</span>
+
+              <div *ngIf="spinner" class="spinner-grow text-info spinner-grow-sm" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+
+
+              <b *ngIf="!biticon">
+                <span class="text-danger font-italic font-weight-bolder">{{balance | currency:'BDT':'symbol-narrow'}} </span> 
+                <span *ngIf="biticon" class="text-danger font-weight-bolder"> - </span>
+                <span class="text-danger font-italic font-weight-bolder">{{coin}}</span>
+              </b>
+            </a>
+          </li> -->
+
+          <li class="list-group-item"><a (click)="signout($event)"><i class="feather icon-log-out m-r-5 text-c-yellow"></i>Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    <ul class="nav pcoded-inner-navbar" (clickOutside)="fireOutClick()">
+      <ng-container *ngFor="let item of navigation">
+        <app-nav-group *ngIf="item.type=='group'" [item]="item"></app-nav-group>
+        <app-nav-collapse *ngIf="item.type=='collapse'" [item]="item"></app-nav-collapse>
+        <app-nav-item *ngIf="item.type=='item'" [item]="item"></app-nav-item>
+      </ng-container>
+    </ul>
+  </div>
+</perfect-scrollbar>
+
+<div *ngIf="this.nextConfig['layout'] === 'horizontal'" #navbarWrapper class="navbar-content sidenav-horizontal" id="layout-sidenav">
+  <a href="javascript:" class="sidenav-horizontal-prev" [ngClass]="prevDisabled" (click)="scrollMinus()"></a>
+  <div  class="sidenav-horizontal-wrapper"><!-- add 14-4 viral -->
+    <ul #navbarContent id="side-nav-horizontal" class="nav pcoded-inner-navbar sidenav-inner" (clickOutside)="fireLeave()" (mouseleave)="fireLeave()">
+      <ng-container *ngFor="let item of navigation">
+        <app-nav-group *ngIf="item.type=='group'" [item]="item"></app-nav-group>
+        <app-nav-collapse *ngIf="item.type=='collapse'" [item]="item"></app-nav-collapse>
+        <app-nav-item *ngIf="item.type=='item'" [item]="item"></app-nav-item>
+      </ng-container>
+    </ul>
+  </div>
+  <a href="javascript:" class="sidenav-horizontal-next" [ngClass]="nextDisabled" (click)="scrollPlus()"></a>
+</div>
+

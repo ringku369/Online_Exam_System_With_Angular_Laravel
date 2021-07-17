@@ -1,0 +1,152 @@
+<div class="row">
+  <ngx-spinner></ngx-spinner>
+  <div class="col-sm-12">
+    
+    <app-card cardTitle="Question Option" [options]="false">
+      
+      <app-alert type="info"  dismiss="true">
+        <span class="text-center text-danger font-weight-bolder"> 
+          Please update your option with proper information
+        </span>
+      </app-alert>
+
+      <!-- <form class="m-t-20" #signupForm=ngForm (ngSubmit)="onSubmit()"> -->
+        <form class="m-t-20" #signupForm=ngForm>
+
+        <div class="alert alert-success" [hidden]="!success" *ngFor="let item of success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+        <div class="alert alert-warning" [hidden]="!errors" *ngFor="let item of errors">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+        <div class="input-group input-group-sm mb-3">
+          
+          <ng-select [ngClass]="'ng-select'" name="question"
+            [options]="questions" [(ngModel)]="form.question"
+            class="custom-select" id="forQuestion" 
+            aria-describedby="inputGroup-sizing-sm" required>
+          </ng-select>
+
+          <div class="input-group-prepend">
+            <label class="input-group-text" id="inputGroup-sizing-sm" for="forQuestion">Required </label>
+          </div>
+        </div>
+
+        
+
+        <!-- <div class="input-group input-group-sm mb-4">
+          <input type="text" class="form-control" 
+          name="name" [(ngModel)]="form.name"
+          placeholder="Option Name" aria-label="" aria-describedby="forName" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forName">Required </span>
+          </div>
+        </div> -->
+
+        <!-- dynamic textbox area -->
+        <div class="form-row" *ngFor="let field of fieldArray; let i = index">
+          <div class="input-group input-group-sm mb-4">
+            <input type="text" class="form-control" 
+            name="name{{i}}" [(ngModel)]="field.name"
+            placeholder="Option Name" aria-label="" aria-describedby="name" required>
+  
+            <div class="input-group-prepend" *ngIf="i!=0">
+              <span class="input-group-text text-danger" id="name" style="cursor: pointer" (click)="deleteFieldValue(i)"> 
+                <i class="fas fa-trash-alt"></i>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row" *ngIf="!isUpdate">
+          <div class="col-md-3"></div>
+          <div class="col-md-3"></div>
+          <div class="col-md-3"></div>
+          <div class="col-md-3">
+            <button  class="btn btn-block btn-sm btn-warning mb-4" type="button" (click)="addFieldValue()" 
+            style="margin-right:10px">Add More...</button>
+          </div>
+        </div>
+        
+
+        
+
+        
+
+        <!-- dynamic textbox area -->
+
+
+
+
+        <button *ngIf="!isUpdate" class="btn btn-block btn-sm btn-primary mb-4"
+        [disabled]="!signupForm.valid" (click)="submitForm()" >Create ...</button>
+
+        <button *ngIf="isUpdate" class="btn btn-block btn-sm btn-primary mb-4"
+        [disabled]="!signupForm.valid" (click)="updateForm()">Update ...</button>
+      
+      </form>
+    
+    
+    </app-card>
+  </div>
+
+
+
+  
+  <div class="col-sm-12">
+    <app-card cardTitle="Question Option list " cardClass="card-datatable" [options]="false">
+      <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+        <br>
+      <div class="table-responsive">
+        <table class="table table-striped1 table-bordered1 nowrap table-hover">
+          <thead>
+          <tr>
+            
+            <th>#</th>
+            
+            <th>Action</th>
+            <th>Question </th>
+            <th>Option </th>
+            
+            <th>Creadted On</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let option of options| filter:term; let i = index">
+            <td>{{i + 1}}</td>
+            <td>
+              
+              
+              <span class="text-info" style="cursor: pointer;" (click)="update(option)">
+                <i class="fas fa-edit"></i>
+              </span>
+              &nbsp;|&nbsp;
+              <span class="text-danger" style="cursor: pointer;" (click)="delete(option)">
+                <i class="fas fa-trash-alt"></i>
+              </span>
+          </td>
+          <td>{{option.question['name']}}</td>
+            <td>{{option.name}}</td>
+            <td>{{option.created_at| date:"dd-MM-yy"}}</td>
+            
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  </div>
+
+  
+  
+
+
+
+</div>

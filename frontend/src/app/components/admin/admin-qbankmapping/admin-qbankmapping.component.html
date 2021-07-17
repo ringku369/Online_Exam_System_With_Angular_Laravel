@@ -1,0 +1,125 @@
+<div class="row">
+  <ngx-spinner></ngx-spinner>
+  <div class="col-sm-12">
+    
+    <app-card cardTitle="Question Bank Mapping" [options]="false">
+      
+      <!-- <app-alert type="info"  dismiss="true">
+        <span class="text-center text-danger font-weight-bolder"> 
+          Please update your question bank with proper information
+        </span>
+      </app-alert> -->
+
+      <!-- <form class="m-t-20" #signupForm=ngForm (ngSubmit)="onSubmit()"> -->
+        <form class="m-t-20" #signupForm=ngForm>
+
+        <div class="alert alert-success" [hidden]="!success" *ngFor="let item of success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+        <div class="alert alert-warning" [hidden]="!errors" *ngFor="let item of errors">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+        <div class="input-group input-group-sm mb-3">
+          
+          <ng-select [ngClass]="'ng-select'" name="bank"
+            [options]="banks" [(ngModel)]="form.bank" style="z-index: 100;"
+            #myBank (ngModelChange)='bankChange($event, myBank.value)'
+            class="custom-select" id="forBank" 
+            aria-describedby="inputGroup-sizing-sm" required>
+          </ng-select>
+
+          <div class="input-group-prepend">
+            <label class="input-group-text" id="inputGroup-sizing-sm" for="forBank">Required </label>
+          </div>
+        </div>
+
+        <button *ngIf="!isUpdate" class="btn btn-block btn-sm btn-primary mb-4"
+        [disabled]="!signupForm.valid" (click)="submitForm()" >Map Question bank ...</button>
+      
+      </form>
+
+      <!-- <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="customControlValidation1" required>
+        <label class="custom-control-label" for="customControlValidation1">Check this custom checkbox</label>
+        <div class="invalid-feedback">Example invalid feedback text</div>
+      </div> -->
+      <!-- New Code -->
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-action list-group-item-info active">
+          <!-- <input type="checkbox" [(ngModel)]="masterSelected" name="list_name" value="m1" (change)="checkUncheckAll()"/> <strong>Select/ Unselect All</strong> -->
+        
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" id="customControlValidation1" class="custom-control-input" [(ngModel)]="masterSelected"  name="list_name" value="m1" (change)="checkUncheckAll()" >
+            <label class="custom-control-label" for="customControlValidation1">Select/ Unselect All Question List</label>
+  
+          </div>
+
+
+
+        </li>
+      </ul>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-light" *ngFor="let item of checklist">
+          <input type="checkbox" [(ngModel)]="item.isSelected" name="list_name" value="{{item.id}}" (change)="isAllSelected()"/>
+          {{item.value}}
+        </li>
+      </ul>
+
+       <!-- New Code -->
+    
+    
+    </app-card>
+  </div>
+
+  
+  <div class="col-sm-12">
+    <app-card cardTitle="Question Bank Mapping List " cardClass="card-datatable" [options]="false">
+      <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+        <br>
+      <div class="table-responsive">
+        <table class="table table-striped1 table-bordered1 nowrap table-hover">
+          <thead>
+          <tr>
+            
+            <th>#</th>
+            
+            <th>Action</th>
+            <th>Bank Title </th>
+            <th>Question Title</th>
+            <th>Creadted On</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let questionbank of questionbanks| filter:term; let i = index">
+            <td>{{i + 1}}</td>
+            <td>
+              <!-- <span class="text-info" style="cursor: pointer;" (click)="update(questionbank)">
+                <i class="fas fa-edit"></i>
+              </span>
+              &nbsp;|&nbsp; -->
+              
+              &nbsp;&nbsp;
+              <span class="text-danger" style="cursor: pointer;" (click)="delete(questionbank)">
+                <i class="fas fa-trash-alt"></i>
+              </span>
+          </td>
+            <td>{{questionbank.bank['name']}}</td>
+            <td>{{questionbank.question['name']}}</td>
+            <td>{{questionbank.created_at| date:"dd-MM-yy"}}</td>
+            
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  </div>
+
+
+
+</div>

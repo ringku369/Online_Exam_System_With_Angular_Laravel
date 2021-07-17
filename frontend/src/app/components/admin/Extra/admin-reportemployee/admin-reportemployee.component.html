@@ -1,0 +1,141 @@
+<div class="row">
+  <ngx-spinner></ngx-spinner>
+  <div class="col-sm-12">
+    
+    <app-card cardTitle="Date Wise Search" [options]="false">
+      
+      <app-alert type="info"  dismiss="true">
+        <span class="text-center text-danger font-weight-bolder"> 
+          Date wise searche user details
+        </span>
+      </app-alert>
+
+      <form class="m-t-20" #signupForm=ngForm (ngSubmit)="onSubmit()">
+
+        <div class="alert alert-success" [hidden]="!success" *ngFor="let item of success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+        <div class="alert alert-warning" [hidden]="!errors" *ngFor="let item of errors">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+        
+        <div class="input-group input-group-sm mb-3">
+          <input class="form-control" readonly autocomplete="off" placeholder="yyyy-mm-dd" name="fdate" [(ngModel)]="fdate" aria-describedby="inputGroup-sizing-sm"
+          ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" required>
+          <div class="input-group-append">
+            <span class="input-group-text" id="inputGroup-sizing-sm" (click)="d1.toggle()">
+              &nbsp; <i class="fa fa-calendar"></i>
+            </span>
+          </div>
+        </div>
+        
+        <div class="input-group input-group-sm mb-3">
+          <input class="form-control" readonly autocomplete="off" placeholder="yyyy-mm-dd" name="tdate" [(ngModel)]="tdate" aria-describedby="inputGroup-sizing-sm"
+          ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()" required>
+          <div class="input-group-append">
+            <span class="input-group-text" id="inputGroup-sizing-sm" (click)="d2.toggle()">
+              &nbsp; <i class="fa fa-calendar"></i>
+            </span>
+          </div>
+        </div>
+
+
+        <button class="btn btn-block btn-sm btn-primary mb-4"
+        [disabled]="!signupForm.valid">Update ...</button>
+      
+      </form>
+    </app-card>
+  </div>
+  
+
+  <div class="col-sm-12" *ngIf="users.length">
+    <app-card cardTitle="User Details list " cardClass="card-datatable" [options]="false">
+      <button class="btn btn-block btn-sm btn-warning mb-4" (click)="PrintDiv()">
+        <i class="fa fa-print" aria-hidden="true"></i>
+      </button>
+      
+      <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+        <br>
+      <div class="table-responsive widget-content" id="htmlData">
+        <table class="table table-striped1 table-bordered1 nowrap table-hover">
+          <thead>
+          <tr>
+            
+            <th>#</th>
+            <th>Balance </th>
+            <th>Employee </th>
+            <th> ID </th>
+            <th> AC. NO </th>
+            
+            <th>Rank </th>
+            <th>Bank </th>
+            <th>Branch </th>
+
+            <th>Email </th>
+            <th>Contact </th>
+            <th>Address </th>
+            <th>Gender </th>
+            <th>Ac.Type </th>
+            
+            
+            
+            
+            
+            <th>Creadted On</th>
+            <!-- <th>Updated On</th> -->
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of users| filter:term; let i = index">
+            <td>{{i + 1}}</td>
+            <td style="font-weight: bolder">{{user.balance | currency:'BDT':'symbol-narrow'}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.acno}}</td>
+            
+            <td>{{user.rank}}</td>
+            <td>{{user.bank}}</td>
+            <td>{{user.branch}}</td>
+            <!-- <td>{{user.bank['name']}}</td> -->
+            <!-- <td>{{user.bank['branch']['name']}}</td>   -->
+            
+
+            <td>{{user.email}}</td>
+            <td>{{user.contact}}</td>
+            <td>{{user.address}}</td>
+            <td>{{user.gender}}</td>
+            <td>{{user.type}}</td>
+
+            
+
+            
+            <td>{{user.created_at| date:"dd-MM-yy"}}</td>
+            <!-- <td>{{user.updated_at}}</td> -->
+            
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  </div>
+
+
+</div>
+<script type="text/javascript">
+  function PrintDiv() {
+      
+    console.log('Working...');
+    
+      // var divToPrint = document.getElementsByClassName('widget-content')[0];
+      // var popupWin = window.open('invoice', '_blank', 'width=100%,height=auto,location=no,left=200px');
+      // popupWin.document.open();
+      // popupWin.document.write('<html><head><link href="Assets/css/style.css" rel="stylesheet" type="text/css"><link href="Assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"></head><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+      // popupWin.document.close();
+      //window.close();
+  }
+</script>

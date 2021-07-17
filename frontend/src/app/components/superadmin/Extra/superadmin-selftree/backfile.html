@@ -1,0 +1,102 @@
+<div class="row">
+    <ngx-spinner></ngx-spinner>
+  
+    
+    <div class="col-sm-12">
+      
+      <app-card cardTitle="Superadmin Card" [options]="false" >
+  
+         
+        <!-- example -->
+        <!-- <div class="container mb-4">
+          <div class="row justify-content-center align-items-center">
+            <div class="tree">
+              <ul>
+                <li>
+                  <a >Parent</a>
+                  <ul>
+                    <li>
+                      <a >Child Left</a>
+                    </li>
+                    <li>
+                      <a >Child Right</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        <!-- example -->
+  
+        
+  
+        <!-- example 1 -->
+        <div class="container mb-4">
+  
+          
+          <div class="row justify-content-center align-items-center">
+  
+            <div class="col-12">
+              <button (click)="getUserData(udata)"  type="button" class="btn btn-primary btn-lg btn-block mb-4" *ngIf="udata.id > 0" >Show (<strong class="text-danger">  {{udata.name}} - {{udata.officeid}} </strong>)  Tree View</button>
+              <p class="text-center text-danger font-weight-bolder text-capitalize"> For better experience please view with desktop or big screen</p>
+  
+            </div>
+  
+            <!-- tree -->
+            <div class="tree">
+              <ul>
+                <li *ngFor="let parent of parents">
+                  <a class="text-info" (click)="parentClick(parent)"> {{parent.name}} -  {{parent.officeid}}</a>
+                  <!-- children1 -->
+                  <ul *ngIf="parent.children.length > 0">
+                    <li *ngFor="let child1 of parent.children">
+                      <a class="text-info" (click)="child1Click(child1)"> {{child1.name}} -  {{child1.officeid}}  -  {{child1.isposition}}</a>
+                      <!-- children2 -->
+                      <ul *ngIf="child1.children.length > 0">
+                        <li *ngFor="let child2 of child1.children">
+                          <a class="text-info" (click)="child2Click(child2)"> {{child2.name}} -  {{child2.officeid}} -  {{child2.isposition}}</a>
+                          <!-- children3 -->
+                          <ul *ngIf="child2.children.length > 0">
+                            <li *ngFor="let child3 of child2.children">
+                              <a class="text-info" (click)="child3Click(child3)"> {{child3.name}} -  {{child3.officeid}} -  {{child3.isposition}}</a>
+                              <!-- children4 -->
+                              <ul *ngIf="child3.children.length > 0">
+                                <li *ngFor="let child4 of child3.children">
+                                  <a class="text-info" (click)="child4Click(child4)"> {{child4.name}} -  {{child4.officeid}} -  {{child4.isposition}}</a>
+                                  <!-- children4 -->
+                                  <ul *ngIf="child4.children.length > 0">
+                                    <li *ngFor="let child5 of child4.children">
+                                      <a class="text-info" (click)="child5Click(child5)"> {{child5.name}} -  {{child5.officeid}} -  {{child5.isposition}}</a>
+                                    </li>
+                                  </ul>
+                                  <!-- children4 -->
+                                </li>
+                              </ul>
+                              <!-- children4 -->
+                            </li>
+                          </ul>
+                          <!-- children3 -->
+                        </li>
+                      </ul>
+                      <!-- children2 -->
+                    </li>
+                  </ul>
+                  <!-- children1 -->
+  
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- tree -->
+
+
+
+        </div>
+        <!-- example 1-->
+      
+      
+      </app-card>
+    </div>
+  </div>
+  

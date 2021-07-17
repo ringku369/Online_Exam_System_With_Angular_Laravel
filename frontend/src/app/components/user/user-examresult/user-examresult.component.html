@@ -1,0 +1,140 @@
+<div class="row">
+  <ngx-spinner></ngx-spinner>
+  
+  
+  <div class="col-sm-12">
+    <app-card cardTitle="Examresult list " cardClass="card-datatable" [options]="false">
+      <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+        <br>
+      <div class="table-responsive">
+        <table class="table table-striped1 table-bordered1 nowrap table-hover">
+          <thead>
+          <tr>
+            
+            <th>#</th>
+            
+            <th>Action</th>
+            <th>Status</th>
+            <th>Examresult Subject</th>
+            <th>Questionbank</th>
+            <th>Examresult Duration Type</th>
+            <th>Negative Marks</th>
+            <th>Examresult Date</th>
+            <!-- <th>Examresult Time</th> -->
+            <th>Duration</th>
+            <!-- <th>Note or Remarks</th> -->
+            
+            <th>Creadted On</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let examresult of examresults| filter:term; let i = index">
+            <td>{{i + 1}}</td>
+            <td>
+              
+              &nbsp;&nbsp;
+              <span class="text-danger" style="cursor: pointer;" (click)="getResult(examresult)">
+                Get Result
+              </span>
+          </td>
+          <td>
+             
+            <p [ngClass]="{'text-primary': examresult.status === 1, 'text-danger' : examresult.status === 0 }" 
+            style="cursor: pointer;font-weight: bolder;">
+              {{examresult.status == 0 ? 'inactive' : 'Active'}}
+            </p>
+            
+          </td>
+            <td>{{examresult.name}}</td>
+            <td>{{examresult.bank}}</td>
+            <td>{{examresult.type == 'false' ? 'Examresult On Total Time' : 'Examresult On Question Time'}}</td>
+            <td>{{examresult.isnegetive == 'false' ? 'Not Applicable' : 'Applicable'}}</td>
+            <td>{{examresult.examdate | date:"dd-MM-yy"}}</td>
+            <!-- <td>{{examresult.examtime}}</td> -->
+            <td>{{examresult.duration}} Minutes</td>
+            <!-- <td>{{examresult.note}}</td> -->
+            <td>{{examresult.created_at| date:"dd-MM-yy"}}</td>
+            
+            
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  </div>
+
+  
+
+  <div class="col-sm-12" *ngIf="resultListArea && answersheets.length > 0">
+    <app-card cardTitle="Exam Answer Sheet" cardClass="card-datatable" [options]="false">
+
+      <div class="table-responsive">
+        <table class="table table-striped1 table-bordered1 nowrap table-hover">
+          <thead>
+            <tr>
+
+              <th>#</th>
+
+              <th>Applicant Name {{marks}} </th>
+              <th>Exam Subject </th>
+              <th>Question</th>
+              <th>Question mark</th>
+              <th>Mark</th>
+              <th>Created Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let answersheet of answersheets| filter:term; let i = index">
+              <td>{{i + 1}}</td>
+
+              <td>{{answersheet.user['name']}}</td>
+              <td>{{answersheet.exam['name']}}</td>
+              <td>{{answersheet.question['name']}}</td>
+              <td>{{answersheet.question['mark']}}</td>
+              <td>{{answersheet.mark}}</td>
+              <td>{{answersheet.created_at| date:"dd-MM-yy"}}</td>
+
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <th colspan="4"></th>
+              <th><span class="text-danger font-weight-bold"> Total Marks</span></th>
+              <th><span class="text-danger font-weight-bold"> {{marks}}</span></th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </app-card>
+  </div>
+
+
+
+
+<!-- modal area -->
+  <div class="col-sm-12">
+    <ng-template #content let-modal>
+
+      <div class="modal-header">
+        <h4 class="modal-title text-info" id="modal-basic-title">Are you sure want to change active status?</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modalClose()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <br>
+      <div class="modal-body font-italic">
+        <button class="btn btn-block btn-sm btn-warning mb-4" (click)="changeStatus()" >Change Status ...</button>
+      </div>
+
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-dark" (click)="modalClose()">Close</button> -->
+        <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
+      </div>
+
+    </ng-template>
+  </div>
+
+<!-- modal area -->
+</div>

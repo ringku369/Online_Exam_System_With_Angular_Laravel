@@ -1,0 +1,152 @@
+<div class="row">
+  <ngx-spinner></ngx-spinner>
+  
+  <div class="col-sm-12" *ngIf="!isUpdate">
+    
+    <app-card cardTitle="Salary Calculation" [options]="false">
+      
+      <app-alert type="info"  dismiss="true">
+        <span class="text-center text-danger font-weight-bolder"> 
+          Rank Wise Calculate Salary
+        </span>
+      </app-alert>
+
+      <!-- <form class="m-t-20" #signupForm=ngForm (ngSubmit)="onSubmit()"> -->
+      <form class="m-t-20" #signupForm1=ngForm>
+
+        <div class="alert alert-success" [hidden]="!success" *ngFor="let item of success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+        <div class="alert alert-warning" [hidden]="!errors" *ngFor="let item of errors">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+
+        <div class="input-group input-group-sm mb-4">
+          <input type="number" class="form-control" 
+          name="basic" [(ngModel)]="form.basic"
+          placeholder="Basic Salary" aria-label="" aria-describedby="forBasic" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forBasic">Required </span>
+          </div>
+        </div>
+
+        <button class="btn btn-block btn-sm btn-info mb-4"
+        [disabled]="!signupForm1.valid" (click)="submitForm()" >Calculate ...</button>
+      
+      </form>
+    
+    
+    </app-card>
+  </div>
+  
+  
+  
+  
+  <div class="col-sm-12" *ngIf="isUpdate">
+    
+    <app-card cardTitle="Update Rank" [options]="false">
+      
+      <app-alert type="info"  dismiss="true">
+        <span class="text-center text-danger font-weight-bolder"> 
+          You can update rank
+        </span>
+      </app-alert>
+
+      <!-- <form class="m-t-20" #signupForm=ngForm (ngSubmit)="onSubmit()"> -->
+      <form class="m-t-20" #signupForm=ngForm>
+
+        <div class="alert alert-success" [hidden]="!success" *ngFor="let item of success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+        <div class="alert alert-warning" [hidden]="!errors" *ngFor="let item of errors">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+
+        <div class="input-group input-group-sm mb-4">
+          <input type="text" class="form-control" 
+          name="name" [(ngModel)]="form.name"
+          placeholder="Rank Name" aria-label="" aria-describedby="forName" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forName">Required </span>
+          </div>
+        </div>
+
+        <button *ngIf="isUpdate" class="btn btn-block btn-sm btn-primary mb-4"
+        [disabled]="!signupForm.valid" (click)="updateForm()">Update ...</button>
+      
+      </form>
+    
+    
+    </app-card>
+  </div>
+
+  
+  <div class="col-sm-12">
+    <app-card cardTitle="Rank list " cardClass="card-datatable" [options]="false">
+      <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+        <br>
+      <div class="table-responsive">
+        <table class="table table-striped1 table-bordered1 nowrap table-hover">
+          <thead>
+          <tr>
+            
+            <th>#</th>
+            
+            <th>Action</th>
+            <th>Rank </th>
+            <th>Basic </th>
+            <th>Rent </th>
+            <th>Medical </th>
+            <th>Salary </th>
+            <th>Creadted On</th>
+            
+
+            
+            
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let rank of rankes| filter:term; let i = index">
+            <td>{{i + 1}}</td>
+            <td>
+              
+              
+              <span class="text-info" style="cursor: pointer;" (click)="update(rank)">
+                <i class="fas fa-edit"></i>
+              </span>
+              <!-- &nbsp;|&nbsp;
+              <span class="text-danger" style="cursor: pointer;" (click)="delete(rank)">
+                <i class="fas fa-trash-alt"></i>
+              </span> -->
+          </td>
+            <td>{{rank.name}}</td>
+            <td>{{rank.basic | currency:'BDT':'symbol-narrow'}}</td>
+            <td>{{rank.hrent | currency:'BDT':'symbol-narrow'}}</td>
+            <td>{{rank.medical | currency:'BDT':'symbol-narrow'}}</td>
+            <td>{{rank.salary | currency:'BDT':'symbol-narrow'}}</td>
+            <td>{{rank.created_at| date:"dd-MM-yy"}}</td>
+            
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  </div>
+
+
+
+</div>

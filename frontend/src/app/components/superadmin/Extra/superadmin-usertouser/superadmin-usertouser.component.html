@@ -1,0 +1,90 @@
+<div class="row">
+  <ngx-spinner></ngx-spinner>
+  <div class="col-sm-12">
+    
+    <app-card cardTitle="Fund Transfer To Other Accounts" [options]="false">
+      <app-alert type="info"  dismiss="true">
+        <span class="text-center text-danger font-weight-bolder"> 
+          There is a verification code required to transfer fund and it's get in your email address also provide authentic information
+        </span>
+      </app-alert>
+
+
+      <button class="btn btn-block btn-sm btn-primary mb-4"
+        *ngIf="form.verifycode" (click)="promptAlert()">Send Varifycode</button>
+
+      <form class="m-t-20" #signupForm=ngForm (ngSubmit)="onSubmit()">
+
+        <div class="alert alert-success" [hidden]="!success" *ngFor="let item of success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+        <div class="alert alert-warning" [hidden]="!errors" *ngFor="let item of errors">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+        
+
+        
+
+        <!-- <div class="input-group input-group-sm mb-3">
+          
+          <ng-select [ngClass]="'ng-select'" name="user"
+            [options]="users" [(ngModel)]="form.user"
+            class="custom-select" id="fordla" 
+            aria-describedby="inputGroup-sizing-sm" required>
+          </ng-select>
+
+          <div class="input-group-prepend">
+            <label class="input-group-text" id="inputGroup-sizing-sm" for="fordla">Required </label>
+          </div>
+        </div> -->
+
+
+        <div class="input-group input-group-sm mb-4">
+          <input type="text" class="form-control" 
+          name="user" [(ngModel)]="form.user"
+          placeholder="User Id" aria-label="User Id" aria-describedby="forUserID" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forUserID">Required </span>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <input type="number" class="form-control" 
+          name="amount" [(ngModel)]="form.amount"
+          min="0" max="1000" step="10"
+          placeholder="Input amount" aria-label="Input amount" 
+           aria-describedby="forAmount" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forAmount">Required </span>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-4">
+          <input type="text" class="form-control" 
+          name="remarks" [(ngModel)]="form.remarks"
+          placeholder="Remarks" aria-label="Remarks" aria-describedby="forRemarks" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forRemarks">Required </span>
+          </div>
+        </div>
+
+
+
+
+        <button *ngIf="form.verifycode == null" class="btn btn-block btn-sm btn-primary mb-4"
+        [disabled]="!signupForm.valid">Process ...</button>
+      
+      </form>
+    
+    
+    </app-card>
+  </div>
+</div>

@@ -1,0 +1,226 @@
+<div class="row">
+  <ngx-spinner></ngx-spinner>
+  <div class="col-sm-12">
+    
+    <app-card cardTitle="Add Exam" [options]="false">
+      
+      <app-alert type="info"  dismiss="true">
+        <span class="text-center text-danger font-weight-bolder"> 
+          Exam on question time option will be included later
+        </span>
+      </app-alert>
+
+      <!-- <button class="btn btn-outline-info form-control" [disabled]="btnDisabled" (click)="openLg(content)">Next</button>
+      <hr> -->
+
+
+      <!-- <form class="m-t-20" #signupForm=ngForm (ngSubmit)="onSubmit()"> -->
+        <form class="m-t-20" #signupForm=ngForm>
+
+        <div class="alert alert-success" [hidden]="!success" *ngFor="let item of success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+        <div class="alert alert-warning" [hidden]="!errors" *ngFor="let item of errors">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+        <div class="col-6">
+          <div class="input-group input-group-sm mb-3">
+            
+            <input type="time" id="etime" class="form-control" 
+            name="etime" [(ngModel)]="form.etime"
+            placeholder="" aria-label="Start Time" aria-describedby="forEtime" required>
+            <label for="etime">Exam Start Time</label>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <input class="form-control" readonly autocomplete="off" placeholder="yyyy-mm-dd" name="fdate" [(ngModel)]="fdate" aria-describedby="inputGroup-sizing-sm"
+          ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" required>
+          <div class="input-group-append">
+            <span class="input-group-text" id="inputGroup-sizing-sm" (click)="d1.toggle()">
+              &nbsp; <i class="fa fa-calendar"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <select  class="custom-select" id="forDuretion" name="type" [(ngModel)]="form.type" required>
+            <option value="">Select Exam Duration Type</option>
+            <option value="false">Exam On Total Time</option>
+            <!-- <option value="true">Exam On Question Time</option> -->
+          </select>
+          <div class="input-group-append">
+            <label class="input-group-text" for="forDuretion">Required </label>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <select  class="custom-select" id="forDuretion" name="isnegetive" [(ngModel)]="form.isnegetive" required>
+            <option value="">Negative Marks Status</option>
+            <option value="true">Applicable</option>
+            <option value="false">Not Applicable</option>
+          </select>
+          <div class="input-group-append">
+            <label class="input-group-text" for="forDuretion">Required </label>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          
+          <ng-select [ngClass]="'ng-select'" name="bank"
+            [options]="banks" [(ngModel)]="form.bank" style="z-index: 100;"
+            #myBank (ngModelChange)='bankChange($event, myBank.value)'
+            class="custom-select" id="forBank" 
+            aria-describedby="inputGroup-sizing-sm" required>
+          </ng-select>
+
+          <div class="input-group-prepend">
+            <label class="input-group-text" id="inputGroup-sizing-sm" for="forBank">Required </label>
+          </div>
+        </div>
+        
+
+        <div class="input-group input-group-sm mb-4">
+          <input type="number" class="form-control" 
+          name="duration" [(ngModel)]="form.duration"
+          placeholder="Exam Duration In Minute" aria-label="" aria-describedby="forduration" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forduration">Required </span>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-4">
+          <input type="text" class="form-control" 
+          name="name" [(ngModel)]="form.name"
+          placeholder="Exam Subject" aria-label="" aria-describedby="forName" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forName">Required </span>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-4">
+          <input type="text" class="form-control" 
+          name="note" [(ngModel)]="form.note"
+          placeholder="Note or Remarks" aria-label="" aria-describedby="note" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="note">Required </span>
+          </div>
+        </div>
+
+        
+
+        <button *ngIf="!isUpdate" class="btn btn-block btn-sm btn-primary mb-4"
+        [disabled]="!signupForm.valid" (click)="submitForm()" >Create ...</button>
+
+        <button *ngIf="isUpdate" class="btn btn-block btn-sm btn-primary mb-4"
+        [disabled]="!signupForm.valid" (click)="updateForm()">Update ...</button>
+      
+      </form>
+    
+    
+    </app-card>
+  </div>
+
+  
+  <div class="col-sm-12">
+    <app-card cardTitle="Exam list " cardClass="card-datatable" [options]="false">
+      <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+        <br>
+      <div class="table-responsive">
+        <table class="table table-striped1 table-bordered1 nowrap table-hover">
+          <thead>
+          <tr>
+            
+            <th>#</th>
+            
+            <th>Action</th>
+            <th>Status</th>
+            <th>Exam Subject</th>
+            <th>Questionbank</th>
+            <th>Exam Duration Type</th>
+            <th>Negative Marks</th>
+            <th>Exam Date</th>
+            <th>Exam Time</th>
+            <th>Duration</th>
+            <th>Note or Remarks</th>
+            
+            <th>Creadted On</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let exam of exams| filter:term; let i = index">
+            <td>{{i + 1}}</td>
+            <td>
+              
+              
+              <span class="text-info" style="cursor: pointer;" (click)="update(exam)">
+                <i class="fas fa-edit"></i>
+              </span>
+              &nbsp;|&nbsp;
+              <span class="text-danger" style="cursor: pointer;" (click)="delete(exam)">
+                <i class="fas fa-trash-alt"></i>
+              </span>
+          </td>
+          <td>
+             
+            <p [ngClass]="{'text-primary': exam.status === 1, 'text-danger' : exam.status === 0 }"
+            (click)="openLg(content, exam)" style="cursor: pointer;font-weight: bolder;">
+              {{exam.status == 0 ? 'Inactive' : 'Active'}}
+            </p>
+            
+          </td>
+            <td>{{exam.name}}</td>
+            <td>{{exam.bank['name']}}</td>
+            <td>{{exam.type == 'false' ? 'Exam On Total Time' : 'Exam On Question Time'}}</td>
+            <td>{{exam.isnegetive == 'false' ? 'Not Applicable' : 'Applicable'}}</td>
+            <td>{{exam.examdate | date:"dd-MM-yy"}}</td>
+            <td>{{exam.examtime}}</td>
+            <td>{{exam.duration}} Minutes</td>
+            <td>{{exam.note}}</td>
+            <td>{{exam.created_at| date:"dd-MM-yy"}}</td>
+            
+            
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  </div>
+
+  
+
+
+<!-- modal area -->
+  <div class="col-sm-12">
+    <ng-template #content let-modal>
+
+      <div class="modal-header">
+        <h4 class="modal-title text-info" id="modal-basic-title">Are you sure want to change active status?</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modalClose()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <br>
+      <div class="modal-body font-italic">
+        <button class="btn btn-block btn-sm btn-warning mb-4" (click)="changeStatus()" >Change Status ...</button>
+      </div>
+
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-dark" (click)="modalClose()">Close</button> -->
+        <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
+      </div>
+
+    </ng-template>
+  </div>
+
+<!-- modal area -->
+</div>

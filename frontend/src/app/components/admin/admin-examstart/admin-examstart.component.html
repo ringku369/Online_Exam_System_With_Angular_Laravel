@@ -1,0 +1,169 @@
+<div class="row">
+  <ngx-spinner></ngx-spinner>
+  <!-- <div class="col-sm-12" *ngIf="cacheArea">
+    <app-card cardTitle="Exam List" [options]="false">
+      <button class="btn btn-block btn-sm btn-primary mb-4"(click)="putCacheData()">Put Cache ...</button>
+      <button class="btn btn-block btn-sm btn-info mb-4"(click)="getCacheData()">Get Cache ...</button>
+      <button class="btn btn-block btn-sm btn-danger mb-4"(click)="forgetCacheData()">Forget Cache ...</button>
+      <button class="btn btn-block btn-sm btn-warning mb-4"(click)="makeExamAnswerSheet()">Make Answer ...</button>
+    </app-card>
+  </div> -->
+
+  <div class="col-sm-12" *ngIf="examListArea">
+    <app-card cardTitle="Active Exam list " cardClass="card-datatable" [options]="false">
+      
+      <app-alert type="info"  dismiss="true">
+        <span class="text-center text-danger font-weight-bolder"> 
+          Delete previous exam date to give exam again. If have any connection or page reloading issue during the running exam time, applicant can participate again if exam time have remain. Multiple applicant can give exam at a time
+        </span>
+      </app-alert>
+      
+      
+      
+      <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+      <br>
+      <div class="table-responsive">
+
+        <table class="table table-striped1 table-bordered1 nowrap table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Action</th>
+              <th>Action</th>
+              <th>Status</th>
+              <th>Exam Subject</th>
+              <th>Exam Duration</th>
+              <th>Negative Marks</th>
+              <th>Note or Remarks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let exam of exams| filter:term; let i = index">
+              <td>{{i + 1}}</td>
+
+
+              <td>
+                &nbsp;&nbsp;
+                <span class="text-danger" style="cursor: pointer;" (click)="delete(exam)">
+                  <i class="fas fa-trash-alt"></i>
+                </span>
+              </td>
+              <td>
+                &nbsp;&nbsp;
+                <span class="text-danger" style="cursor: pointer;" (click)="examRequest(exam)">
+                  Exam Start
+                </span>
+              </td>
+
+
+              <td>
+                <p [ngClass]="{'text-primary': exam.status === 1, 'text-danger' : exam.status === 0 }"
+                  style="cursor: pointer;font-weight: bolder;">
+                  {{exam.status == 0 ? 'Inactive' : 'Active'}}
+                </p>
+              </td>
+
+
+
+              <td>{{exam.name}}</td>
+              <td>{{exam.duration}} Minutes</td>
+              <td>{{exam.isnegetive == 'true' ? 'Applicable' : 'Not Applicable'}}</td>
+
+              <td>{{exam.note}}</td>
+
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  </div>
+
+
+  <div class="col-sm-12" *ngIf="resultListArea && answersheets.length > 0">
+    <app-card cardTitle="Exam Answer Sheet" cardClass="card-datatable" [options]="false">
+
+      <div class="table-responsive">
+        <table class="table table-striped1 table-bordered1 nowrap table-hover">
+          <thead>
+            <tr>
+
+              <th>#</th>
+
+              <th>Applicant Name {{marks}} </th>
+              <th>Exam Subject </th>
+              <th>Question</th>
+              <th>Question Mark</th>
+              <th>Mark</th>
+              <th>Created Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let answersheet of answersheets| filter:term; let i = index">
+              <td>{{i + 1}}</td>
+
+              <td>{{answersheet.user['name']}}</td>
+              <td>{{answersheet.exam['name']}}</td>
+              <td>{{answersheet.question['name']}}</td>
+              <td>{{answersheet.question['mark']}}</td>
+              <td>{{answersheet.mark}}</td>
+              <td>{{answersheet.created_at| date:"dd-MM-yy"}}</td>
+
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <th colspan="4"></th>
+              <th><span class="text-danger font-weight-bold"> Total Marks</span></th>
+              <th><span class="text-danger font-weight-bold"> {{marks}}</span></th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </app-card>
+  </div>
+
+
+
+
+
+  <div class="col-sm-12" *ngIf="examquestions.length > 0">
+
+    <app-card cardTitle="Exam Question" [options]="false">
+      <ul class="list-group">
+        <button class="btn btn-block btn-sm btn-info mt-2 mb-1">{{examReqData.note}}</button>
+        <button class="btn btn-block btn-sm btn-info mt-0 mb-1">Exam Total Time : {{examReqData.duration}}</button>
+        <button class="btn btn-block btn-sm btn-info mt-0 mb-1">Negative Marks :
+          {{examReqData.isnegetive == 'true' ? 'Applicable' : 'Not Applicable'}}</button>
+
+      </ul>
+
+      <ul class="list-group" *ngFor="let examquestion of examquestions">
+
+        <button class="btn btn-block btn-sm btn-danger mt-4 mb-0">
+          Question : {{examquestion.question}} |
+          Marks : {{examquestion.mark}}
+
+          {{examReqData.isnegetive == 'true' ? '| Negative Marks : ' + examquestion.nmark : ''}}
+
+
+        </button>
+
+        <li class="list-group-item list-group-item-light" *ngFor="let item of examquestion.option">
+          <input type="checkbox" [(ngModel)]="item.isSelected" name="optin" value="{{examquestion.option_id}}"
+            (change)="isQesSelected(item)" />
+          {{item.option}}
+        </li>
+      </ul>
+
+      <button class="btn btn-block btn-sm btn-primary mt-4" (click)="confirSubmit()"> Submit...</button>
+    </app-card>
+
+  </div>
+
+
+
+
+</div>

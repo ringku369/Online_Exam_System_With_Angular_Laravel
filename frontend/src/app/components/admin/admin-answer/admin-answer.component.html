@@ -1,0 +1,125 @@
+<div class="row">
+  <ngx-spinner></ngx-spinner>
+  <div class="col-sm-12">
+    
+    <app-card cardTitle="Update Answer" [options]="false">
+      
+      <!-- <app-alert type="info"  dismiss="true">
+        <span class="text-center text-danger font-weight-bolder"> 
+          Please update your answer with proper information
+        </span>
+      </app-alert> -->
+
+      <!-- <form class="m-t-20" #signupForm=ngForm (ngSubmit)="onSubmit()"> -->
+        <form class="m-t-20" #signupForm=ngForm>
+
+        <div class="alert alert-success" [hidden]="!success" *ngFor="let item of success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+
+        <div class="alert alert-warning" [hidden]="!errors" *ngFor="let item of errors">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          {{item}}
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          
+          <ng-select [ngClass]="'ng-select'" name="question"
+            [options]="questions" [(ngModel)]="form.question"
+            #myQuestion (ngModelChange)='questionChange($event, myQuestion.value)'
+            class="custom-select" id="forQuestion" 
+            aria-describedby="inputGroup-sizing-sm" required>
+          </ng-select>
+
+          <div class="input-group-prepend">
+            <label class="input-group-text" id="inputGroup-sizing-sm" for="forQuestion">Required </label>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          
+          <ng-select [ngClass]="'ng-select'" name="option"
+            [options]="options" [(ngModel)]="form.option"
+            #myOption (ngModelChange)='optionChange($event, myOption.value)'
+            class="custom-select" id="forOption" 
+            aria-describedby="inputGroup-sizing-sm" required>
+          </ng-select>
+
+          <div class="input-group-prepend">
+            <label class="input-group-text" id="inputGroup-sizing-sm" for="forOption">Required </label>
+          </div>
+        </div>
+
+        
+
+        <!-- <div class="input-group input-group-sm mb-4">
+          <input type="text" class="form-control" 
+          name="name" [(ngModel)]="form.name"
+          placeholder="Answer Name" aria-label="" aria-describedby="forName" required>
+
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="forName">Required </span>
+          </div>
+        </div> -->
+
+        <button *ngIf="!isUpdate" class="btn btn-block btn-sm btn-primary mb-4"
+        [disabled]="!signupForm.valid" (click)="submitForm()" >Create ...</button>
+
+        <button *ngIf="isUpdate" class="btn btn-block btn-sm btn-primary mb-4"
+        [disabled]="!signupForm.valid" (click)="updateForm()">Update ...</button>
+      
+      </form>
+    
+    
+    </app-card>
+  </div>
+
+  
+  <div class="col-sm-12">
+    <app-card cardTitle="Answer list " cardClass="card-datatable" [options]="false">
+      <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+        <br>
+      <div class="table-responsive">
+        <table class="table table-striped1 table-bordered1 nowrap table-hover">
+          <thead>
+          <tr>
+            
+            <th>#</th>
+            
+            <th>Action</th>
+            <th>Question </th>
+            <th>Option </th>
+            <th>Creadted On</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let answer of answers| filter:term; let i = index">
+            <td>{{i + 1}}</td>
+            <td>
+              
+              
+              <!-- <span class="text-info" style="cursor: pointer;" (click)="update(answer)">
+                <i class="fas fa-edit"></i>
+              </span>
+              &nbsp;|&nbsp; -->
+              &nbsp;&nbsp;
+              <span class="text-danger" style="cursor: pointer;" (click)="delete(answer)">
+                <i class="fas fa-trash-alt"></i>
+              </span>
+          </td>
+            <td>{{answer.question['name']}}</td>
+            <td>{{answer.option['name']}}</td>
+            <td>{{answer.created_at| date:"dd-MM-yy"}}</td>
+            
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  </div>
+
+
+
+</div>

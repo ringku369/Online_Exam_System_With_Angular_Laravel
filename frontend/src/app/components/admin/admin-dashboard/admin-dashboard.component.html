@@ -1,0 +1,342 @@
+<div class="row">
+  <ngx-spinner></ngx-spinner>
+  <!-- <div class="col-xl-12">
+    <app-card cardTitle="Overall Report Of This Application " [options]="false">
+      <app-alert type="info"  dismiss="true">
+        <span class="text-center text-danger font-weight-bolder"> 
+          user manual given below
+        </span>
+      </app-alert>
+    </app-card>
+  </div> -->
+
+
+  <!-- page statistic card start -->
+  <!-- <div class="col-lg-3 col-md-6">
+    <app-card [hidHeader]="true" [isCardFooter]="true" footerClass="bg-c-blue">
+      <div class="row align-items-center">
+        <div class="col-8">
+          <h4 class="text-c-blue">{{data.balance | currency:'BDT':'symbol-narrow'}} </h4>
+          <h6 class="text-muted m-b-0">Credit</h6>
+        </div>
+        <div class="col-4 text-right">
+          <i class="f-28 m-r-10 fab fa-btc text-c-blue"></i>
+        </div>
+      </div>
+      <div class="app-card-footer">
+        <div class="row align-items-center">
+          <div class="col-9">
+            <p class="text-white m-b-0">Current Balance</p>
+          </div>
+          <div class="col-3 text-right">
+            <i class="feather icon-trending-up text-white f-16"></i>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <app-card [hidHeader]="true" [isCardFooter]="true" footerClass="bg-c-green">
+      <div class="row align-items-center">
+        <div class="col-8">
+          <h4 class="text-c-green">{{data.tcredit | currency:'BDT':'symbol-narrow'}}</h4>
+          <h6 class="text-muted m-b-0">Credit</h6>
+        </div>
+        <div class="col-4 text-right">
+          <i class="f-28 m-r-10 fab fa-btc text-c-green"></i>
+        </div>
+      </div>
+      <div class="app-card-footer">
+        <div class="row align-items-center">
+          <div class="col-9">
+            <p class="text-white m-b-0">Total Deposit</p>
+          </div>
+          <div class="col-3 text-right">
+            <i class="feather icon-trending-up text-white f-16"></i>
+           
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <app-card [hidHeader]="true" [isCardFooter]="true" footerClass="bg-c-red">
+      <div class="row align-items-center">
+        <div class="col-8">
+          <h4 class="text-c-red">{{data.tselfdebit | currency:'BDT':'symbol-narrow'}}</h4>
+          <h6 class="text-muted m-b-0">Debit</h6>
+        </div>
+        <div class="col-4 text-right">
+          <i class="f-28 m-r-10 fab fa-btc text-c-red"></i>
+        </div>
+      </div>
+      <div class="app-card-footer">
+        <div class="row align-items-center">
+          <div class="col-9">
+            <p class="text-white m-b-0">Debited By Self</p>
+          </div>
+          <div class="col-3 text-right">
+            <i class="feather icon-trending-down text-white f-16"></i>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <app-card [hidHeader]="true" [isCardFooter]="true" footerClass="bg-c-yellow">
+      <div class="row align-items-center">
+        <div class="col-8">
+          <h4 class="text-c-yellow">{{data.tuserdebit | currency:'BDT':'symbol-narrow'}}</h4>
+          <h6 class="text-muted m-b-0">Debit</h6>
+        </div>
+        <div class="col-4 text-right">
+          <i class="f-28 m-r-10 fab fa-btc text-c-yellow"></i>
+        </div>
+      </div>
+      <div class="app-card-footer">
+        <div class="row align-items-center">
+          <div class="col-9">
+            <p class="text-white m-b-0">Transfer To User</p>
+          </div>
+          <div class="col-3 text-right">
+            <i class="feather icon-trending-down text-white f-16"></i>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div> -->
+  <!-- page statistic card end -->
+
+
+  
+
+  <!-- widget-statistic start -->
+  
+  <!-- <div class="col-md-6 col-xl-4">
+    <app-card [hidHeader]="true" cardClass="widget-statstic-card">
+      <div class="card-header-left mb-3">
+        <h5 class="mb-0">Admin</h5>
+        <p class="p-t-10 m-b-0 text-c-blue">Total Admin User</p>
+      </div>
+      <i class="feather icon-users st-icon bg-c-blue txt-lite-color"></i>
+      <div class="text-left">
+        <h3 class="d-inline-block">{{data.admincount}} </h3>
+        <i class="feather icon-arrow-up text-c-blue f-30 "></i>
+      </div>
+    </app-card>
+  </div>
+  
+  <div class="col-md-6 col-xl-4">
+    <app-card [hidHeader]="true" cardClass="widget-statstic-card">
+      <div class="card-header-left mb-3">
+        <h5 class="mb-0">Employee</h5>
+        <p class="p-t-10 m-b-0 text-c-green">Total Employee User</p>
+      </div>
+      <i class="feather icon-users st-icon bg-c-green txt-lite-color"></i>
+      <div class="text-left">
+        <h3 class="d-inline-block">{{data.usercount}}</h3>
+        <i class="feather icon-arrow-up text-c-green f-30 "></i>
+      </div>
+    </app-card>
+  </div>
+  
+  <div class="col-md-12 col-xl-4">
+    <app-card [hidHeader]="true" cardClass="widget-statstic-card">
+      <div class="card-header-left mb-3">
+        <h5 class="mb-0">Grade </h5>
+        <p class="p-t-10 m-b-0 text-c-yellow">Total Grade Count</p>
+      </div>
+      <i class="feather icon-sliders st-icon bg-c-yellow"></i>
+      <div class="text-left">
+        <h3 class="d-inline-block">{{data.gradecount}}</h3>
+        <i class="feather icon-arrow-up f-30 text-c-green"></i>
+      </div>
+    </app-card>
+  </div> -->
+  
+  <!-- widget-statistic end -->
+
+  <div class="col-xl-12">
+    <app-card cardTitle="Overall User Manual & Features" [options]="false">
+      <app-alert type="danger"  dismiss="true">
+        <span class="text-default font-weight-bolder"> 
+          If get any trouble to operate this software  please follow this user manual
+        </span>
+      </app-alert>
+
+
+      <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action active">
+          Technology Stacks :
+        </button>
+        <button type="button" class="list-group-item list-group-item-action font-weight-bolder text-info">PHP</button>
+        <button type="button" class="list-group-item list-group-item-action font-weight-bolder text-info">Laravel Framework With JWT Authentication</button>
+        <button type="button" class="list-group-item list-group-item-action font-weight-bolder text-info" disabled>Angular 10 With Lazy Loading Route</button>
+        <button type="button" class="list-group-item list-group-item-action font-weight-bolder text-info" disabled>Bootstrap/html/CSS/SCSS</button>
+        <button type="button" class="list-group-item list-group-item-action font-weight-bolder text-info" disabled>MySql (Used Trigger, Procedure, Transaction) </button>
+      </div>
+
+      <div class="list-group mt-4">
+        <button type="button" class="list-group-item list-group-item-action active">
+          Software Installation Workflow :
+        </button>
+        <button type="button" class="list-group-item list-group-item-action font-weight-bolder text-info">
+          Users Module => Configuration Module > Question Bank Mapping => Exam Module
+        </button>
+        <button type="button" class="list-group-item list-group-item-action font-weight-bolder text-info">
+          # Question # Option # Answer mapping # Question Bank # Question Bank With Question # Exam List # Exam Start # Exam Result
+        </button>
+        
+      </div>
+
+      <br><br>
+<!-- 
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action list-group-item-primary active">
+          Configuration Module
+        </a>
+        <a [routerLink]="[ '/admin/rank']" class="list-group-item list-group-item-light">
+          <p class="text-danger font-weight-bolder"> 
+            Rank : 
+          </p>
+          <p class="text-default font-weight-bolder"> 
+            Predefined all grade list is displayed, Rank can be updated also salary calculate with last grade wise
+          </p>
+        </a>
+
+        <a [routerLink]="[ '/admin/branch']" class="list-group-item list-group-item-light">
+          <p class="text-danger font-weight-bolder"> 
+            Branch : 
+          </p>
+          <p class="text-default font-weight-bolder"> 
+            All branch is appeared with a table also simple crud system included
+          </p>
+        </a>
+
+        <a [routerLink]="[ '/admin/bank']" class="list-group-item list-group-item-light">
+          <p class="text-danger font-weight-bolder"> 
+            Bank : 
+          </p>
+          <p class="text-default font-weight-bolder"> 
+            All bank is appeared with a table, also simple crud system included
+          </p>
+        </a>
+      </div>
+
+
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action list-group-item-primary active">
+          User Module
+        </a>
+        <a [routerLink]="[ '/admin/profile']" class="list-group-item list-group-item-light">
+          <p class="text-danger font-weight-bolder"> 
+            Profile : 
+          </p>
+          
+          <p class="text-danger font-weight-bolder" style="font-size: 16px;">
+            Please update admin email address because of OTP code is required for fund transferring and OTP code will send to admin mail address
+          </p>
+
+          <p class="text-default font-weight-bolder"> 
+            User can update his self profile with proper information
+          </p>
+          
+        </a>
+
+        <a [routerLink]="[ '/admin/user']" class="list-group-item list-group-item-light">
+          <p class="text-danger font-weight-bolder"> 
+            User : 
+          </p>
+          <p class="text-default font-weight-bolder"> 
+            All Employee is appeared with a table also simple crud system included
+          </p>
+        </a>
+      </div>
+
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action list-group-item-primary active">
+          Authentication Module
+        </a>
+
+        <a [routerLink]="[ '/admin/password']" class="list-group-item list-group-item-light">
+          <p class="text-danger font-weight-bolder"> 
+            Change Password : 
+          </p>
+          <p class="text-default font-weight-bolder"> 
+            User can change password here, there is a verification code required to change password for security purpose and its get in your email address also provide authentic information
+          </p>
+        </a>
+      </div>
+
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action list-group-item-primary active">
+          Funds Module
+        </a>
+
+        <a [routerLink]="[ '/admin/deposit']" class="list-group-item list-group-item-light">
+          <p class="text-danger font-weight-bolder"> 
+            Fund Deposit To Admin : 
+          </p>
+          <p class="text-default font-weight-bolder"> 
+            Admin can fund debit or credit to his own bank account, for this process no need of OTP code verification
+          </p>
+
+          <p class="text-default text-danger font-weight-bolder"> 
+            For this process i have used MySQL transaction feature that it can prevent losing data
+          </p>
+        </a>
+
+        <a [routerLink]="[ '/admin/deposit']" class="list-group-item list-group-item-light">
+          <p class="text-danger font-weight-bolder"> 
+            Fund Transfer To User : 
+          </p>
+          <p class="text-default font-weight-bolder"> 
+            Admin can fund transfer to selected employee , for this process need to verify of OTP code for security purpose
+          </p>
+
+          <p class="text-default text-danger font-weight-bolder"> 
+            For this process i have used MySQL transaction feature that it can prevent losing data
+          </p>
+        </a>
+      </div>
+
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action list-group-item-primary active">
+          Report Module
+        </a>
+
+        <a [routerLink]="[ '/admin/reportemployee']" class="list-group-item list-group-item-light">
+          <p class="text-danger font-weight-bolder"> 
+            Employee Details Report : 
+          </p>
+          <p class="text-default font-weight-bolder"> 
+            Employees details is displayed also date wise search option included
+          </p>
+        </a>
+
+        <a [routerLink]="[ '/admin/reportfundhistory']" class="list-group-item list-group-item-light">
+          <p class="text-danger font-weight-bolder"> 
+            Admin Fund Transaction : 
+          </p>
+          <p class="text-default font-weight-bolder"> 
+            All fund transaction of admin is displayed by date wise search
+          </p>
+        </a>
+
+        <a [routerLink]="[ '/admin/reportuserfundhistory']" class="list-group-item list-group-item-light">
+          <p class="text-danger font-weight-bolder"> 
+            User Fund Transaction : 
+          </p>
+          <p class="text-default font-weight-bolder"> 
+            All fund transaction of individual user is displayed by date wise search
+          </p>
+        </a>
+      </div> -->
+
+
+
+    </app-card>
+  </div>
+
+
+</div>
