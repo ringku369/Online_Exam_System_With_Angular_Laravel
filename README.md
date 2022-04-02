@@ -1,7 +1,7 @@
-# softbd
-Online exam system for demo purpose
 
-##Installation steps 
+# Online exam system for demo purpose
+
+##Installation steps
 
 Import database file and put proper credential into .env file for backend side
 
